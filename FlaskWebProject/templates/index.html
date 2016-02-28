@@ -1,10 +1,51 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<p>Hello World</p>
+<script>
+function startup(){
+    video = document.getElementById('videoElement');
+    canvas =  document.getElementById('picture');
+    startbutton = document.getElementById('startbutton');
+
+    startbutton.addEventListener('click', function(ev){
+                        takepicture();
+                        ev.preventDefault();
+                        }, false);
+}
+function takepicture(){
+     var context = canvas.getContext('2d');
+     canvas.width = width;
+     canvas.height = height; 
+     var data = canvas.toDataURL('image/png');
+     $.post("/getEmotions", {"image": data},
+             function(result){
+                $("#happiness").html(result);
+             }
+    );
+}
+</script>
 <div id="container">
     <video autoplay = "true" id = "videoElement">
     </video>
 </div>
-
+<button id = "startbutton">Cheese!</button>
+<canvas id = "picture"></canvas>
+<p id="happiness"></p>
+<script>
+    var video = document.querySelector("#videoElement");
+     
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+     
+    if (navigator.getUserMedia) {       
+            navigator.getUserMedia({video: true}, handleVideo, videoError);
+    }
+ 
+    function handleVideo(stream) {
+        video.src = window.URL.createObjectURL(stream);
+    }
+ 
+    function videoError(e) {
+            // do something
+    }
+</script>
 {% endblock %}
