@@ -6,8 +6,8 @@ from flask import Flask, request
 from flask import render_template
 app = Flask(__name__)
 
-from pyechonest import config
-config.ECHO_NEST_API_KEY = "7UL5JWDT2WWMWSMYS"
+#from pyechonest import config
+#config.ECHO_NEST_API_KEY = "7UL5JWDT2WWMWSMYS"
 #import FlaskWebProject.views
 
 @app.route('/')
@@ -24,9 +24,9 @@ def getEmotion():
         return "fuck"
     image = request.form['image']
     image = re.sub(".*base64,", "", image)
-#    image = base64.b64decode(image)
-    return str(len(image))
-
+    image = base64.b64decode(image)
+    #return image
+#    return "fuck"
 #return image
-#return str(emotions.getEmotions(image))
+    return str(emotions.getEmotions(image))
     
