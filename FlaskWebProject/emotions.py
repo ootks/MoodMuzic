@@ -13,10 +13,10 @@ def getEmotions(image):
     response = conn.getresponse()
     data = response.read()
     conn.close()
-    a = json.loads(data[1:-1])
-    return a 
-#	except Exception as e:
-#	    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+    # try:
+    return json.loads(data[1:-1])
+	# except Exception as e:
+	#     print("[Errno {0}] {1}".format(e.errno, e.strerror))
 #Get JSON of emotions
 def getEmotions_fn(file_name):
 	headers = {
@@ -28,7 +28,7 @@ def getEmotions_fn(file_name):
 	file = open(file_name, "rb")
 	body = file.read()
 	file.close()
-
+	data = None
 	try:
 		conn = httplib.HTTPSConnection('api.projectoxford.ai')
 		conn.request("POST", "/emotion/v1.0/recognize?", str(body), headers)
@@ -37,4 +37,4 @@ def getEmotions_fn(file_name):
 		conn.close()
 		return json.loads(data)[0]
 	except Exception as e:
-	    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+	    print("[Errno {0}] {1} {2}".format(e.errno, e.strerror, data))

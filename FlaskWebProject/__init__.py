@@ -40,8 +40,7 @@ def getSong():
     image = re.sub(".*base64,", "", image)
     image = base64.b64decode(image)
     emots = emotions.getEmotions(image)
-    print >> sys.stderr, str(emots)
-    print >> sys.stderr, str(type(emots))
-    stoof = str(songs.getSongs(emots))
-    print >> sys.stderr, stoof
-    return stoof
+    stoof = songs.getSongs(emots)
+    track = stoof.get_tracks('spotify-WW')[0]
+    return """<iframe src="https://embed.spotify.com/?uri="""+track['foreign_id']+"""" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>"""
+#    return stoof.title

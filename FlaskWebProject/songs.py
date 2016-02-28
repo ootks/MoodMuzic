@@ -14,6 +14,7 @@ def getSongs(emots):
     disgust = emots['disgust']
     fear = emots['fear']
     sadness = emots['sadness']
+    neutral = emots['neutral']
     surprise = emots['surprise']
 
     biggestMood = max(happiness, sadness, anger)
@@ -30,13 +31,13 @@ def getSongs(emots):
  #   max_loudness=None
  #   min_loudness=None
 
-    min_energy=1-max(fear, sadness, disgust)
-    max_energy=max(happiness, anger, contempt, surprise)
+    min_energy=sadness
+    max_energy=surprise
     if(min_energy > max_energy):
         min_energy = 0.5
         max_energy = 0.75
-    min_danceability=1-max(fear, disgust, anger, contempt, sadness)
-    max_danceability=max(happiness, surprise)
+    min_danceability=neutral
+    max_danceability=happiness
     if(min_danceability > max_danceability):
         min_danceability = 0.5
         max_danceability = 0.75
@@ -50,4 +51,4 @@ def getSongs(emots):
 #    min_valence=None
 #    return song.search(mood = mood, min_energy = min_energy, min_danceability = min_danceability, max_danceability = max_danceability)
     x = song.search(mood = biggestMood, min_energy = min_energy, max_energy = max_energy, min_danceability = min_danceability, max_danceability = max_danceability)
-    return str(x[0])
+    return x[0]

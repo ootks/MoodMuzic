@@ -14,7 +14,7 @@
 {% block scripts %}
 <script>
 (function(){
-     var width = 50;
+     var width =150;
      var height = 0;
 
      var streaming = false;
@@ -43,7 +43,7 @@
             function(err){
                 console.log("An error occurred! " + err);
             }
-        );
+           );
         }
         video.addEventListener('canplay', function(ev){
           if (!streaming) {
@@ -61,8 +61,7 @@
           takepicture();
           ev.preventDefault();
         }, false);
-        takepicture();
-    }
+       }
 
   function takepicture() {
     var context = canvas.getContext('2d');
@@ -73,7 +72,7 @@
     
       var data = canvas.toDataURL('image/png');
       $.post("/getSongs", {image : data}, function(result){
-        $("#information").text(result);
+        $("#information").html(result);
       });
     }
   }
