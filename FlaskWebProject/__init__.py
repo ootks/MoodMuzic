@@ -34,15 +34,14 @@ def getEmotion():
 
 @app.route('/getSongs', methods = ['POST'])
 def getSong():
-	return "music"
-    # if 'image' not in request.form:
-    #     return "fuck"
-    # image = request.form['image']
-    # image = re.sub(".*base64,", "", image)
-    # image = base64.b64decode(image)
-    # emots = emotions.getEmotions(image)
-    # print >> sys.stderr, str(emots)
-    # print >> sys.stderr, str(type(emots))
-    # stoof = str(songs.getSongs(emots))
-    # print >> sys.stderr, stoof
-    # return stoof
+    if 'image' not in request.form:
+        return "Darn"
+    image = request.form['image']
+    image = re.sub(".*base64,", "", image)
+    image = base64.b64decode(image)
+    emots = emotions.getEmotions(image)
+    print >> sys.stderr, str(emots)
+    print >> sys.stderr, str(type(emots))
+    stoof = str(songs.getSongs(emots))
+    print >> sys.stderr, stoof
+    return stoof
