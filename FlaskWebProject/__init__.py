@@ -1,17 +1,20 @@
 """
 The flask application package.
 """
-import emotions, re, base64, sys, songs
+import emotions, re, base64, sys, songs, spotipy
+import spotipy.util as util
 from flask import Flask, request
 from flask import render_template
 app = Flask(__name__)
 
 from pyechonest import config
 config.ECHO_NEST_API_KEY = "7UL5JWDT2WWMWSMYS"
+SpotifyKey = "90978a365a8e44f58aad6f13c21f8c82"
 #import FlaskWebProject.views
 
 @app.route('/')
 def singlesong():
+	util.prompt_for_user_token("ootks","playlist-modify-public")
     return render_template('singlesong.html')
 
 @app.route('/video')
