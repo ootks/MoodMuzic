@@ -8,5 +8,5 @@ app = Flask(__name__)
 #import FlaskWebProject.views
 
 @app.route('/')
-def hello_world():
-    return "Hello World!"
+def home():
+    return flask.render_template('index.html')
