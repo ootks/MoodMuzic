@@ -6,7 +6,7 @@ def getSongs(emots):
     config.ECHO_NEST_API_KEY = "7UL5JWDT2WWMWSMYS"
 
     if u'faceRectangle' not in emots:
-        return "DEATH"
+        return ""
     emots = emots['scores']
     happiness = emots['happiness']
     anger = emots['anger']
@@ -49,7 +49,5 @@ def getSongs(emots):
 #    max_valence=None
 #    min_valence=None
 #    return song.search(mood = mood, min_energy = min_energy, min_danceability = min_danceability, max_danceability = max_danceability)
-    print >> sys.stderr, "HERE"
     x = song.search(mood = biggestMood, min_energy = min_energy, max_energy = max_energy, min_danceability = min_danceability, max_danceability = max_danceability)
-    print >> sys.stderr, str(x)
-    return str(x)
+    return str(x[0])

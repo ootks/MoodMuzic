@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class = "camera">
-        <video id = "video">Video not available</video>
+    <div class = "camera, text-center">
+        <video id = "video" class = "img-circle">Video not available</video>
+        </br>
         <button id = "startbutton">Take photo</button>
     </div>
-    <p id = "information">I'm Not Happy</p>
+    <p id = "information" class = "text-center">Generating Music</p>
     <canvas id = "canvas" width = "150" height = "240" style = "display:none">
     </canvas>
 {% endblock %}

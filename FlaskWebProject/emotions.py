@@ -14,7 +14,6 @@ def getEmotions(image):
     data = response.read()
     conn.close()
     a = json.loads(data[1:-1])
-    print >> sys.stderr, str(data[1:-1])
     return a 
 #	except Exception as e:
 #	    print("[Errno {0}] {1}".format(e.errno, e.strerror))
