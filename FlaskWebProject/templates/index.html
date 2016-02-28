@@ -17,7 +17,7 @@ function takepicture(){
      canvas.width = width;
      canvas.height = height; 
      var data = canvas.toDataURL('image/png');
-     $.post("/getEmotions", {"image": data},
+     $.post("/getSongs", {"image": data},
              function(result){
                 $("#happiness").html(result);
              }

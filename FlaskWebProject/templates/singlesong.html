@@ -6,14 +6,14 @@
         <button id = "startbutton">Take photo</button>
     </div>
     <p id = "information">I'm Not Happy</p>
-    <canvas id = "canvas" width = "200" height = "240" style = "display:none">
+    <canvas id = "canvas" width = "150" height = "240" style = "display:none">
     </canvas>
 {% endblock %}
 
 {% block scripts %}
 <script>
 (function(){
-     var width = 200;
+     var width = 150;
      var height = 0;
 
      var streaming = false;
@@ -72,8 +72,7 @@
       context.drawImage(video, 0, 0, width, height);
     
       var data = canvas.toDataURL('image/png');
-      alert(data.length)
-      $.post("/getEmotions", {image : data}, function(result){
+      $.post("/getSongs", {image : data}, function(result){
         $("#information").html(result);
       });
     } else {
